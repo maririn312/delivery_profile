@@ -12,8 +12,8 @@ class SplashScreen extends StatefulWidget {
   }
 }
 
-class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMixin {
-
+class _SplashScreenState extends State<SplashScreen>
+    with TickerProviderStateMixin {
   //**********************************************//
   @override
   void initState() {
@@ -30,12 +30,9 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
           'assets/melon.json',
           fit: BoxFit.contain,
           onLoaded: (composition) {
-            Future.delayed(
-              const Duration(seconds: 2),
-              () {
-                Navigator.pushNamed(context, AppTypes.SCREEN_LOGIN);
-              }
-            );
+            Future.delayed(const Duration(seconds: 2), () {
+              Navigator.pushNamed(context, AppTypes.SCREEN_LOGIN);
+            });
           },
         ),
       ),
