@@ -1,6 +1,8 @@
 // ignore_for_file: constant_identifier_names
 
 class Language {
+  static const FOOTER_COPYRIGHT = 'SNP LLC ©';
+
   static const CREATE_REG = 'Бүртгэл үүсгэх';
   static const CONF_FORGET = 'Баталгаажуулалт';
   static const CREATED_ACC = 'Баяр хүргэе, таны бүртгэл үүслээ';

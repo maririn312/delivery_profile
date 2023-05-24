@@ -3,7 +3,26 @@
 import 'dart:io';
 
 import 'package:delivery_profile/app_theme.dart';
-import 'package:delivery_profile/screens/home_screen.dart';
+import 'package:delivery_profile/exceptions/exceptions_manager.dart';
+import 'package:delivery_profile/screens/splash/splash_screen.dart';
+import 'package:delivery_profile/screens/auth/forget/forget_password_screen.dart';
+import 'package:delivery_profile/screens/auth/login/login_screen.dart';
+import 'package:delivery_profile/screens/auth/register/register_screen.dart';
+import 'package:delivery_profile/screens/auth/register/register_info_screen.dart';
+import 'package:delivery_profile/screens/auth/register/register_phone_screen.dart';
+import 'package:delivery_profile/screens/auth/register/register_otp_screen.dart';
+import 'package:delivery_profile/screens/auth/register/register_welcome_screen.dart';
+import 'package:delivery_profile/screens/auth/forget/forget_password_otp_screen.dart';
+import 'package:delivery_profile/screens/auth/forget/change_password_screen.dart';
+import 'package:delivery_profile/screens/auth/forget/forget_password_welcome_screen.dart';
+import 'package:delivery_profile/screens/call/request_call/request_call_screen.dart';
+import 'package:delivery_profile/screens/dashboard/dashboard_screen.dart';
+import 'package:delivery_profile/screens/guest_dashboard/guest_dashboard_screen.dart';
+import 'package:delivery_profile/screens/message/message_screen.dart';
+import 'package:delivery_profile/screens/notification_history/notification_screen.dart';
+import 'package:delivery_profile/screens/search/search_screen.dart';
+import 'package:delivery_profile/screens/splash/splash_screen.dart';
+import 'package:delivery_profile/app_theme.dart';
 
 import 'app_types.dart';
 
@@ -11,12 +30,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:logger/logger.dart';
 
-import 'exceptions/exceptions_manager.dart';
-
 /// ============================================================= ///
-class DeliveryBlocObserver extends BlocObserver {
+class MelonBlocObserver extends BlocObserver {
   Logger logger = Logger(printer: PrettyPrinter(methodCount: 0));
   Logger errorLogger = Logger();
+
+  @override
+  void onEvent(Bloc bloc, Object event) {
+    super.onEvent(bloc, event);
+    logger.i(event);
+  }
 
   @override
   onTransition(Bloc bloc, Transition transition) {
@@ -32,21 +55,32 @@ class DeliveryBlocObserver extends BlocObserver {
 }
 
 /// ============================================================= ///
+class MelonHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext context) {
+    return super.createHttpClient(context)
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
+  }
+}
+
+/// ============================================================= ///
 final RouteObserver<PageRoute> routeObserver = RouteObserver<PageRoute>();
 
 void main() async {
   /// ===================== APP PRE SETUPS ======================== ///
   WidgetsFlutterBinding.ensureInitialized();
 
-  Bloc.observer = DeliveryBlocObserver();
+  HttpOverrides.global = MelonHttpOverrides();
+  Bloc.observer = MelonBlocObserver();
   ExceptionManager.xMan.debugMode = true;
   WidgetsFlutterBinding.ensureInitialized();
 
-  runApp(const DeliveryApp());
+  runApp(const MelonApp());
 }
 
-class DeliveryApp extends StatelessWidget {
-  const DeliveryApp({Key? key}) : super(key: key);
+class MelonApp extends StatelessWidget {
+  const MelonApp({Key key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
@@ -54,20 +88,33 @@ class DeliveryApp extends StatelessWidget {
     return GestureDetector(
         onTap: () {},
         child: MaterialApp(
-            title: 'Home Delivery',
+            title: 'Melon Social Networking  Mobile Application',
             theme: AppTheme.themeData,
             // home: const RequestCallScreen(),
             // home: const InComingCallScreen(),
-            home: const HomeScreen(
-              title: 'fdfdsfasd',
-            ),
+            home: const SplashScreen(),
             debugShowCheckedModeBanner: true,
             navigatorObservers: [
               routeObserver
             ],
             routes: {
-              AppTypes.SCREEN_HOME: (context) =>
-                  const HomeScreen(title: 'gfdgfsd'),
+              AppTypes.SCREEN_LOGIN: (context) => const LoginScreen(),
+              AppTypes.SCREEN_REGISTER: (context) => const RegisterScreen(),
+              AppTypes.SCREEN_REGISTER_INFO: (context) =>
+                  const RegisterInfoScreen(),
+              AppTypes.SCREEN_REGISTER_PHONE: (context) =>
+                  const RegisterPhoneScreen(),
+              AppTypes.SCREEN_REGISTER_OTP: (context) =>
+                  const RegisterOtpScreen(),
+              AppTypes.SCREEN_REGISTER_WELCOME: (context) =>
+                  const RegisterWelcomeScreen(),
+              AppTypes.SCREEN_FORGET: (context) => const ForgetPasswordScreen(),
+              AppTypes.SCREEN_FORGET_OTP: (context) =>
+                  const ForgetPasswordOtpScreen(),
+              AppTypes.SCREEN_FORGET_CHANGE: (context) =>
+                  const ChangePasswordScreen(),
+              AppTypes.SCREEN_FORGET_WELCOME: (context) =>
+                  const ForgetPasswordWelcomeScreen(),
             }));
   }
 }

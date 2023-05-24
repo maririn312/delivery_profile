@@ -1,7 +1,26 @@
 // ignore_for_file: constant_identifier_names
 
 class AppTypes {
-  static const SCREEN_HOME = 'screen_home';
+  static const SCREEN_SPLASH = 'screen_splash';
+  static const SCREEN_LOGIN = 'screen_login';
+  static const SCREEN_REGISTER = 'screen_register';
+  static const SCREEN_REGISTER_INFO = 'screen_register_info';
+  static const SCREEN_REGISTER_PHONE = 'screen_register_phone';
+  static const SCREEN_REGISTER_OTP = 'screen_register_otp';
+  static const SCREEN_REGISTER_WELCOME = 'screen_register_welcome';
+  static const SCREEN_FORGET = 'screen_forget';
+  static const SCREEN_SEARCH = 'screen_search';
+  static const SCREEN_FORGET_OTP = 'screen_forget_otp';
+  static const SCREEN_FORGET_CHANGE = 'screen_forget_change';
+  static const SCREEN_FORGET_WELCOME = 'screen_forget_welcome';
+  static const SCREEN_DASHBOARD = 'screen_dashboard';
+  static const SCREEN_GUEST_DASHBOARD = 'screen_guest_dashboard';
+  static const SCREEN_MESSAGE = 'screen_message';
+  static const SCREEN_NOTIFICATION = 'screen_notification';
+  static const SCREEN_CALL = 'screen_call';
+  static const SCREEN_INCOMING_CALL = 'screen_incoming_call';
+  static const SCREEN_OUTCOMING_CALL = 'screen_outcoming_call';
+  static const SCREEN_REQUEST_CALL = 'screen_request_call';
 
   // HTTP TYPES
   static const HEADER_AUTH = 'Authorization';
