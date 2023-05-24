@@ -1,8 +1,8 @@
 // ignore_for_file: use_key_in_widget_constructors
 
 import 'package:flutter/material.dart';
-import 'package:melon_mobile_flutter/components/melon_loading_indicator.dart';
-import 'package:melon_mobile_flutter/components/component_interfaces/melon_button_interface.dart';
+import '../../../components/melon_loading_indicator.dart';
+import '../../../components/component_interfaces/melon_button_interface.dart';
 
 class MelonButton extends MelonButtonInterface {
   const MelonButton({

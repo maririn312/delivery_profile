@@ -15,14 +15,6 @@ import 'package:delivery_profile/screens/auth/register/register_welcome_screen.d
 import 'package:delivery_profile/screens/auth/forget/forget_password_otp_screen.dart';
 import 'package:delivery_profile/screens/auth/forget/change_password_screen.dart';
 import 'package:delivery_profile/screens/auth/forget/forget_password_welcome_screen.dart';
-import 'package:delivery_profile/screens/call/request_call/request_call_screen.dart';
-import 'package:delivery_profile/screens/dashboard/dashboard_screen.dart';
-import 'package:delivery_profile/screens/guest_dashboard/guest_dashboard_screen.dart';
-import 'package:delivery_profile/screens/message/message_screen.dart';
-import 'package:delivery_profile/screens/notification_history/notification_screen.dart';
-import 'package:delivery_profile/screens/search/search_screen.dart';
-import 'package:delivery_profile/screens/splash/splash_screen.dart';
-import 'package:delivery_profile/app_theme.dart';
 
 import 'app_types.dart';
 
@@ -90,8 +82,6 @@ class MelonApp extends StatelessWidget {
         child: MaterialApp(
             title: 'Melon Social Networking  Mobile Application',
             theme: AppTheme.themeData,
-            // home: const RequestCallScreen(),
-            // home: const InComingCallScreen(),
             home: const SplashScreen(),
             debugShowCheckedModeBanner: true,
             navigatorObservers: [
